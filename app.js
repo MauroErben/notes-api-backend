@@ -24,6 +24,6 @@ mongoose.connect(url)
 app.use('/auth', authRoutes)
 
 //Rutas con acceso autenticado
-app.use('/', middlewares.ensureAuthenticated, pageRoutes)
+app.use('/api', middlewares.ensureAuthenticated, pageRoutes)
 
 
