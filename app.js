@@ -5,8 +5,11 @@ const pageRoutes = require('./routes/pageRoutes')
 const mongoose = require('mongoose')
 const middlewares = require('./middlewares')
 require('dotenv').config()
+const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 3001
+
+app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
