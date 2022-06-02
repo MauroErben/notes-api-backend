@@ -18,8 +18,6 @@ exports.ensureAuthenticated = function (req, res, next) {
     const token = req.headers.authorization.split(" ")[1]
     const payload = jwt.decode(token, config.TOKEN_SECRET)
 
-    console.log(payload.sub)
-
     //comprobamos is el token ha expirado, si es asi, enviamos un codigo de error 401
     if(payload.exp <= moment.unix()){
         return res.status(401).json({ message: 'El token ha expirado' })
