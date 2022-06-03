@@ -1,14 +1,13 @@
 const Usuario = require('../models/usuario')
-const bcrypt = require('bcrypt')  
+const bcrypt = require('bcrypt')
 const services = require('../services/services')
 
 exports.register = async function (req, res) {
- 
-  const {name, email, password} = req.body
- 
+  const { name, email, password } = req.body
+
   const user = new Usuario({
     name,
-    email, 
+    email,
     password
   })
   const salt = await bcrypt.genSalt(10)
@@ -21,12 +20,10 @@ exports.register = async function (req, res) {
 }
 
 exports.login = async function (req, res) {
-
   const { email, password } = req.body
   const user = await Usuario.findOne({ email })
 
   if (user) {
-
     const validPassword = await bcrypt.compare(password, user.password)
 
     if (validPassword) {

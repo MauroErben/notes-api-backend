@@ -4,7 +4,7 @@ const routes = Router()
 const { validEmail } = require('../helpers/validatorDB')
 const validateFields = require('../helpers/ValidatorFields')
 const AuthController = require('../controllers/authController')
- 
+
 routes.post('/register',
   [
     check('name', 'Name is required').not().isEmpty(),

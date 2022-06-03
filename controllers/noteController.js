@@ -11,8 +11,8 @@ module.exports.getAllNotes = async function (req, res) {
 }
 
 module.exports.getNoteFromId = function (req, res) {
-  //Si la nota no existe, respondemos con un codigo 404, de lo contrario, con un codigo 200 y la nota
-  Nota.findOne({ _id: req.params.id }, function (err, note) {
+  // Si la nota no existe, respondemos con un codigo 404, de lo contrario, con un codigo 200 y la nota
+  Nota.findOne({ _id: req.params.id }, function (note) {
     if (!note) {
       return res.status(404).json({ message: 'Note does not exist' })
     }
@@ -42,13 +42,13 @@ module.exports.createNote = function (req, res) {
 module.exports.deleteNote = function (req, res) {
   // Si hay un error, respondemos con un codigo 404, de lo contrario, respondemos con un codigo 200 y un mensaje
   Nota.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) { 
-      return res.status(404).json({ message: 'Note does not exist' }) 
+    if (err) {
+      return res.status(404).json({ message: 'Note does not exist' })
     }
     res.status(200).json({ message: 'Note deleted succesfully' })
   })
 }
- 
+
 module.exports.updateNote = function (req, res) {
   /*
         * Si los campos estan vacios, respondemos con un codigo 400
@@ -64,7 +64,7 @@ module.exports.updateNote = function (req, res) {
       note: req.body.note,
       user: req.user
     }
-  }, function (err, note) {
+  }, function (note) {
     if (!note) {
       return res.status(404).json({ message: 'Note does not exist' })
     }

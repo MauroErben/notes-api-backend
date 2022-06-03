@@ -7,4 +7,4 @@ const NotesScheme = new Schema({
   user_id: { type: Schema.ObjectId, ref: 'Usuario' }
 }, { timestamps: true })
 
-module.exports = mongoose.model('Nota', NotesScheme)  
+module.exports = mongoose.model('Nota', NotesScheme)
