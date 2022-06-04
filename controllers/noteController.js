@@ -24,22 +24,13 @@ module.exports.getNoteFromId = function (req, res) {
 }
 
 module.exports.createNote = function (req, res) {
-  /*
-        * Si los campos estan vacios, respondemos con un json con error 400
-        * Creamos la instancia de la nota
-        * Guardamos la nota y respondemos un codigo 200 y un json con un mensaje de exito
-    */
-  if (!(req.body.title && req.body.note)) {
-    return res.status(400).json({ message: 'Empty fields' })
-  }
-
   const nota = new Nota({
     title: req.body.title,
     note: req.body.note,
     user_id: req.user
   })
 
-  nota.save().then(() => res.status(200).json({ ...nota._doc, status: { message: 'Note created succesfully' } }))
+  nota.save().then(() => res.status(200).json({ message: 'Note created succesfully', nota }))
 }
 
 module.exports.deleteNote = function (req, res) {
